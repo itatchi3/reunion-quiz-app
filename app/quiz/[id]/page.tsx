@@ -21,7 +21,9 @@ export default async function Quiz({ params }: { params: { id: number } }) {
   return (
     <Center h="100%">
       {quiz.type === "CHOICE" && (
-        <Box
+        <Flex
+          direction="column"
+          justify="space-between"
           style={{
             backgroundColor: "#FFFFFF",
             width: "90%",
@@ -31,22 +33,33 @@ export default async function Quiz({ params }: { params: { id: number } }) {
             padding: "100px",
           }}
         >
-          <Text size="80px" fw="bold">
-            {quiz.text}
-          </Text>
-          {quiz.options.map((option, i) => (
-            <Grid key={option}>
-              <Box>
-                <Text size="72px" fw="bold">
-                  {i}
-                </Text>
-                <Text size="72px" fw="bold">
-                  {option}
+          <Box>
+            <Text size="96px" fw="bold">
+              Q{quiz.id}
+            </Text>
+            <Text size="96px" fw="bold">
+              {quiz.text}
+            </Text>{" "}
+          </Box>
+          <Grid>
+            {quiz.options.map((option, i) => (
+              <Box
+                key={option}
+                style={{
+                  backgroundColor: "#FFFFFF",
+                  width: "50%",
+                  opacity: "100%",
+                  borderRadius: "32px",
+                  padding: "32px",
+                }}
+              >
+                <Text size="96px" fw="bold">
+                  {i + 1} {option}
                 </Text>
               </Box>
-            </Grid>
-          ))}
-        </Box>
+            ))}
+          </Grid>
+        </Flex>
       )}
     </Center>
   );
