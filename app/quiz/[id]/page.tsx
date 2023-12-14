@@ -28,16 +28,17 @@ export default async function Quiz({ params }: { params: { id: number } }) {
             backgroundColor: "#FFFFFF",
             width: "90%",
             height: "90%",
-            opacity: "80%",
+            opacity: "85%",
             borderRadius: "100px",
             padding: "100px",
+            boxShadow: "0 10px 25px 0 rgba(0, 0, 0, .5)",
           }}
         >
           <Box>
-            <Text size="96px" fw="bold">
+            <Text size="64px" fw="bold">
               Q{quiz.id}
             </Text>
-            <Text size="96px" fw="bold">
+            <Text size="64px" fw="bold">
               {quiz.text}
             </Text>{" "}
           </Box>
@@ -46,14 +47,11 @@ export default async function Quiz({ params }: { params: { id: number } }) {
               <Box
                 key={option}
                 style={{
-                  backgroundColor: "#FFFFFF",
                   width: "50%",
-                  opacity: "100%",
-                  borderRadius: "32px",
                   padding: "32px",
                 }}
               >
-                <Text size="96px" fw="bold">
+                <Text size="64px" fw="bold">
                   {i + 1} {option}
                 </Text>
               </Box>
