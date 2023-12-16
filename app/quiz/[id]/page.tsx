@@ -1,4 +1,5 @@
 import { Box, Center, Flex, Grid, Text } from "@mantine/core";
+import { fetchClient } from "../../../hooks/fetchClient";
 
 type Quiz = {
   id: number;
@@ -8,16 +9,8 @@ type Quiz = {
 };
 
 export default async function Quiz({ params }: { params: { id: number } }) {
-  // const quiz = (await fetch(
-  //   `${process.env.API_URL}/api/quiz/${params.id}`
-  // ).then((res) => res.json())) as Quiz;
+  const quiz = (await fetchClient(`/api/quiz/${params.id}`)) as Quiz;
 
-  const quiz = {
-    id: 1,
-    text: "2016年発行の卒業アルバムには、部活動、同好会ごとの集合写真が載ったページがあります。その中で、一番人数が多い部活動・同好会は次のうちどれでしょう？",
-    type: "CHOICE",
-    options: ["野球部", "サッカー部", "吹奏楽部", "女子ハンドボール部"],
-  };
   return (
     <Center h="100%">
       {quiz.type === "CHOICE" && (
@@ -29,16 +22,16 @@ export default async function Quiz({ params }: { params: { id: number } }) {
             width: "90%",
             height: "90%",
             opacity: "85%",
-            borderRadius: "100px",
-            padding: "100px",
-            boxShadow: "0 10px 25px 0 rgba(0, 0, 0, .5)",
+            borderRadius: "48px",
+            padding: "48px",
+            boxShadow: "0 10px 16px 0 rgba(0, 0, 0, .5)",
           }}
         >
           <Box>
-            <Text size="64px" fw="bold">
+            <Text size="48px" fw="bold">
               Q{quiz.id}
             </Text>
-            <Text size="64px" fw="bold">
+            <Text size="48px" fw="bold">
               {quiz.text}
             </Text>{" "}
           </Box>
@@ -48,10 +41,10 @@ export default async function Quiz({ params }: { params: { id: number } }) {
                 key={option}
                 style={{
                   width: "50%",
-                  padding: "32px",
+                  padding: "16px",
                 }}
               >
-                <Text size="64px" fw="bold">
+                <Text size="48px" fw="bold">
                   {i + 1} {option}
                 </Text>
               </Box>
