@@ -1,5 +1,8 @@
+'use client'
+
 import { Box, Center, Flex, Grid, Text } from "@mantine/core";
 import { fetchClient } from "../../../hooks/fetchClient";
+import { use, useEffect, useState } from "react";
 
 type Quiz = {
   id: number;
@@ -8,16 +11,23 @@ type Quiz = {
   options: string[];
 };
 
-export default async function Quiz({ params }: { params: { id: number } }) {
-  let quiz: Quiz | undefined = undefined;
-  try {
-    quiz = (await fetchClient(`/api/quiz/${params.id}`, {
-      cache: "no-store",
-    }))
-    console.log(quiz)
-  }catch(e){
-    console.error(e)
-  }
+export default  function Quiz({ params }: { params: { id: number } }) {
+  const [quiz, setQuiz] = useState<Quiz | undefined>();
+
+  useEffect(() => {
+    const getData = async () => {
+      try{
+        const data = (await fetchClient(`/api/quiz/${params.id}`, {
+          cache: "no-store",
+        })) as Quiz
+        setQuiz(data)
+        }catch(e){
+        console.error(e)
+        }
+    }
+    getData()
+  }, [quiz, params.id])
+
 
     return (
       <Center h="100%">
