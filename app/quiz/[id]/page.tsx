@@ -9,7 +9,9 @@ type Quiz = {
 };
 
 export default async function Quiz({ params }: { params: { id: number } }) {
-  const quiz = (await fetchClient(`/api/quiz/${params.id}`)) as Quiz;
+  const quiz = (await fetchClient(`/api/quiz/${params.id}`, {
+    cache: "no-store",
+  })) as Quiz;
 
   return (
     <Center h="100%">
