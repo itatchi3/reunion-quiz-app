@@ -8,17 +8,22 @@ type Answer = {
 };
 
 export default async function Answer({ params }: { params: { id: string } }) {
-  const answers = (await fetchClient(`/api/quiz/${params.id}/answers`, {
-    cache: "no-store",
-  })) as Answer[];
+  try {
+    const answers = (await fetchClient(`/api/quiz/${params.id}/answers`, {
+      cache: "no-store",
+    })) as Answer[];
 
-  return (
-    <Grid>
-      {answers.map((answer) => (
-        <div key={answer.teamId}>
-          <h1>{params.id}</h1>
-        </div>
-      ))}
-    </Grid>
-  );
+    return (
+      <Grid>
+        {answers.map((answer) => (
+          <div key={answer.teamId}>
+            <h1>{params.id}</h1>
+            <h2>{answer.answerText}</h2>
+          </div>
+        ))}
+      </Grid>
+    );
+  } catch (error) {
+    <div>エラー</div>;
+  }
 }
