@@ -9,14 +9,18 @@ type Quiz = {
 };
 
 export default async function Quiz({ params }: { params: { id: number } }) {
+  let quiz: Quiz | undefined = undefined;
   try {
-    const quiz = (await fetchClient(`/api/quiz/${params.id}`, {
+    quiz = (await fetchClient(`/api/quiz/${params.id}`, {
       cache: "no-store",
-    })) as Quiz;
+    }))
+  }catch(e){
+    console.error(e)
+  }
 
     return (
       <Center h="100%">
-        {quiz.type === "CHOICE" && (
+        {quiz?.type === "CHOICE" && (
           <Flex
             direction="column"
             justify="space-between"
@@ -57,19 +61,6 @@ export default async function Quiz({ params }: { params: { id: number } }) {
         )}
       </Center>
     );
-
-  } catch (error: any) {
-    return (
-      <Center h="100%">
-        <Text size="48px" fw="bold">
-          500
-        </Text>
-        <Text size="48px" fw="bold">
-          {error.message}
-        </Text>
-      </Center>
-    );
-  }
 }
 
 export async function generateStaticParams() {
