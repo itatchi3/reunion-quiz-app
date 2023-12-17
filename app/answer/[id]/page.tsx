@@ -22,9 +22,3 @@ export default async function Answer({ params }: { params: { id: string } }) {
     </Grid>
   );
 }
-
-export async function generateStaticParams() {
-  return [...Array(10)].map((_, i) => {
-    id: i.toString();
-  });
-}
