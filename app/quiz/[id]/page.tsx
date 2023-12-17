@@ -14,6 +14,7 @@ export default async function Quiz({ params }: { params: { id: number } }) {
     quiz = (await fetchClient(`/api/quiz/${params.id}`, {
       cache: "no-store",
     }))
+    console.log(quiz)
   }catch(e){
     console.error(e)
   }
