@@ -74,8 +74,8 @@ export default  function Quiz({ params }: { params: { id: number } }) {
     );
 }
 
-export async function generateStaticParams() {
-  return [...Array(10)].map((_, i) => {
-    id: i;
-  });
-}
+// export async function generateStaticParams() {
+//   return [...Array(10)].map((_, i) => {
+//     id: i;
+//   });
+// }
