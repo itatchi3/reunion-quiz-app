@@ -1,7 +1,6 @@
+import "./globals.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import "@mantine/core/styles.css";
-import { Box, ColorSchemeScript, MantineProvider } from "@mantine/core";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -18,7 +17,6 @@ export default function RootLayout({
   return (
     <html lang="ja">
       <head>
-        <ColorSchemeScript />
         <link rel="shortcut icon" href="/favicon.svg" />
         <meta
           name="viewport"
@@ -26,7 +24,7 @@ export default function RootLayout({
         />
       </head>
       <body className={inter.className} style={{ backgroundColor: "#FFCC00" }}>
-        <MantineProvider>{children} </MantineProvider>
+        {children}
       </body>
     </html>
   );

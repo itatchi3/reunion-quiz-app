@@ -1,5 +1,4 @@
-import { Grid } from "@mantine/core";
-import { fetchClient } from "../../../hooks/fetchClient";
+import { fetchClient } from "../../../util/fetchClient";
 
 type Answer = {
   teamId: number;
@@ -14,14 +13,14 @@ export default async function Answer({ params }: { params: { id: string } }) {
     })) as Answer[];
 
     return (
-      <Grid>
+      <>
         {answers.map((answer) => (
           <div key={answer.teamId}>
             <h1>{params.id}</h1>
             <h2>{answer.answerText}</h2>
           </div>
         ))}
-      </Grid>
+      </>
     );
   } catch (error) {
     <div>エラー</div>;

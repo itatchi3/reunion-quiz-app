@@ -1,5 +1,5 @@
-import { Box, Center, Flex, Grid, Text } from "@mantine/core";
-import { fetchClient } from "../../../hooks/fetchClient";
+import { css } from "../../../styled-system/css";
+import { fetchClient } from "../../../util/fetchClient";
 
 type Quiz = {
   id: number;
@@ -14,74 +14,85 @@ export default async function Quiz({ params }: { params: { id: number } }) {
       cache: "no-store",
     })) as Quiz;
 
+    console.log(quiz);
+
     return (
-      <Center h="100%">
-        <Flex
-          direction="column"
-          justify="space-between"
-          style={{
-            backgroundColor: "#FFFFFF",
-            width: "90%",
-            height: "90%",
-            opacity: "85%",
+      <div
+        className={css({
+          h: "100vh",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        })}
+      >
+        <div
+          className={css({
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "space-between",
+            bgColor: "#FFFFFF",
+            w: "90%",
+            h: "90%",
+            opacity: "80%",
             borderRadius: "48px",
-            padding: "48px",
+            p: "48px",
             boxShadow: "0 10px 16px 0 rgba(0, 0, 0, .5)",
-          }}
+          })}
         >
           {quiz.type === "CHOICE" && (
-            <Box key={quiz.id}>
-              <Box>
-                <Text size="48px" fw="bold">
+            <div key={quiz.id}>
+              <div>
+                <p className={css({ fontSize: "48px", fontWeight: "bold" })}>
                   Q{quiz.id}
-                </Text>
-                <Text size="48px" fw="bold">
+                </p>
+                <p className={css({ fontSize: "48px", fontWeight: "bold" })}>
                   {quiz.text}
-                </Text>{" "}
-              </Box>
-              <Grid>
+                </p>
+              </div>
+              <div
+                className={css({
+                  display: "grid",
+                  gridTemplateColumns: "1fr 1fr",
+                })}
+              >
                 {quiz.options.map((option, i) => (
-                  <Box
-                    key={option}
-                    style={{
-                      width: "50%",
-                      padding: "16px",
-                    }}
-                  >
-                    <Text size="48px" fw="bold">
+                  <div key={option} className={css({})}>
+                    <p
+                      className={css({ fontSize: "48px", fontWeight: "bold" })}
+                    >
                       {i + 1} {option}
-                    </Text>
-                  </Box>
+                    </p>
+                  </div>
                 ))}
-              </Grid>
-            </Box>
+              </div>
+            </div>
           )}
           {quiz.type === "IMAGE" && (
-            <Box key={quiz.id}>
-              <Box>
-                <Text size="48px" fw="bold">
+            <div key={quiz.id}>
+              <div>
+                <p className={css({ fontSize: "48px", fontWeight: "bold" })}>
                   Q{quiz.id}
-                </Text>
-                <Text size="48px" fw="bold">
+                </p>
+                <p className={css({ fontSize: "48px", fontWeight: "bold" })}>
                   {quiz.text}
-                </Text>
-              </Box>
-            </Box>
+                </p>
+              </div>
+            </div>
           )}
           {quiz.type === "FREE" && (
-            <Box key={quiz.id}>
-              <Box>
-                <Text size="48px" fw="bold">
+            <div key={quiz.id}>
+              <div>
+                <p className={css({ fontSize: "48px", fontWeight: "bold" })}>
                   Q{quiz.id}
-                </Text>
-                <Text size="48px" fw="bold">
+                </p>
+                <p className={css({ fontSize: "48px", fontWeight: "bold" })}>
                   {quiz.text}
-                </Text>
-              </Box>
-            </Box>
+                </p>
+              </div>
+            </div>
           )}
-        </Flex>
-      </Center>
+        </div>
+      </div>
     );
   } catch (error: any) {
     return <div>データがありません</div>;
