@@ -1,3 +1,4 @@
+import { LinkButton } from "../../../components/LinkButton";
 import { css } from "../../../styled-system/css";
 import { fetchClient } from "../../../util/fetchClient";
 
@@ -17,80 +18,88 @@ export default async function Quiz({ params }: { params: { id: number } }) {
     console.log(quiz);
 
     return (
-      <div
-        className={css({
-          h: "100vh",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-        })}
-      >
+      <div>
         <div
           className={css({
+            h: "95vh",
             display: "flex",
-            flexDirection: "column",
-            justifyContent: "space-between",
-            bgColor: "#FFFFFF",
-            w: "90%",
-            h: "90%",
-            opacity: "80%",
-            borderRadius: "48px",
-            p: "48px",
-            boxShadow: "0 10px 16px 0 rgba(0, 0, 0, .5)",
+            justifyContent: "center",
+            alignItems: "center",
           })}
         >
-          {quiz.type === "CHOICE" && (
-            <div key={quiz.id}>
-              <div>
-                <p className={css({ fontSize: "48px", fontWeight: "bold" })}>
-                  Q{quiz.id}
-                </p>
-                <p className={css({ fontSize: "48px", fontWeight: "bold" })}>
-                  {quiz.text}
-                </p>
+          <div
+            className={css({
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "space-between",
+              bgColor: "#FFFFFF",
+              w: "90%",
+              h: "90%",
+              opacity: "80%",
+              borderRadius: "48px",
+              p: "48px",
+              boxShadow: "0 10px 16px 0 rgba(0, 0, 0, .5)",
+            })}
+          >
+            {quiz.type === "CHOICE" && (
+              <div key={quiz.id}>
+                <div>
+                  <p className={css({ fontSize: "48px", fontWeight: "bold" })}>
+                    Q{quiz.id}
+                  </p>
+                  <p className={css({ fontSize: "48px", fontWeight: "bold" })}>
+                    {quiz.text}
+                  </p>
+                </div>
+                <div
+                  className={css({
+                    display: "grid",
+                    gridTemplateColumns: "1fr 1fr",
+                  })}
+                >
+                  {quiz.options.map((option, i) => (
+                    <div key={option} className={css({})}>
+                      <p
+                        className={css({
+                          fontSize: "48px",
+                          fontWeight: "bold",
+                        })}
+                      >
+                        {i + 1} {option}
+                      </p>
+                    </div>
+                  ))}
+                </div>
               </div>
-              <div
-                className={css({
-                  display: "grid",
-                  gridTemplateColumns: "1fr 1fr",
-                })}
-              >
-                {quiz.options.map((option, i) => (
-                  <div key={option} className={css({})}>
-                    <p
-                      className={css({ fontSize: "48px", fontWeight: "bold" })}
-                    >
-                      {i + 1} {option}
-                    </p>
-                  </div>
-                ))}
+            )}
+            {quiz.type === "IMAGE" && (
+              <div key={quiz.id}>
+                <div>
+                  <p className={css({ fontSize: "48px", fontWeight: "bold" })}>
+                    Q{quiz.id}
+                  </p>
+                  <p className={css({ fontSize: "48px", fontWeight: "bold" })}>
+                    {quiz.text}
+                  </p>
+                </div>
               </div>
-            </div>
-          )}
-          {quiz.type === "IMAGE" && (
-            <div key={quiz.id}>
-              <div>
-                <p className={css({ fontSize: "48px", fontWeight: "bold" })}>
-                  Q{quiz.id}
-                </p>
-                <p className={css({ fontSize: "48px", fontWeight: "bold" })}>
-                  {quiz.text}
-                </p>
+            )}
+            {quiz.type === "FREE" && (
+              <div key={quiz.id}>
+                <div>
+                  <p className={css({ fontSize: "48px", fontWeight: "bold" })}>
+                    Q{quiz.id}
+                  </p>
+                  <p className={css({ fontSize: "48px", fontWeight: "bold" })}>
+                    {quiz.text}
+                  </p>
+                </div>
               </div>
-            </div>
-          )}
-          {quiz.type === "FREE" && (
-            <div key={quiz.id}>
-              <div>
-                <p className={css({ fontSize: "48px", fontWeight: "bold" })}>
-                  Q{quiz.id}
-                </p>
-                <p className={css({ fontSize: "48px", fontWeight: "bold" })}>
-                  {quiz.text}
-                </p>
-              </div>
-            </div>
-          )}
+            )}
+          </div>
+        </div>
+        <div className={css({ display: "flex", justifyContent: "end" })}>
+          <LinkButton text="回答一覧" path={`/answer/${params.id}`} />
         </div>
       </div>
     );

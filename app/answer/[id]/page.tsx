@@ -1,6 +1,8 @@
+import { css } from "../../../styled-system/css";
 import { fetchClient } from "../../../util/fetchClient";
+import { Answers } from "./Answers";
 
-type Answer = {
+export type Answer = {
   teamId: number;
   answerText: string;
   correct: boolean;
@@ -13,14 +15,17 @@ export default async function Answer({ params }: { params: { id: string } }) {
     })) as Answer[];
 
     return (
-      <>
-        {answers.map((answer) => (
-          <div key={answer.teamId}>
-            <h1>{params.id}</h1>
-            <h2>{answer.answerText}</h2>
-          </div>
-        ))}
-      </>
+      <div
+        className={css({
+          h: "100vh",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          p: "10px",
+        })}
+      >
+        <Answers answers={answers} quizId={params.id} />
+      </div>
     );
   } catch (error) {
     <div>エラー</div>;
