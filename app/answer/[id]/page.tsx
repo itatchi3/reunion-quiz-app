@@ -5,7 +5,7 @@ import { Answers } from "./Answers";
 export type Answer = {
   teamId: number;
   answerText: string;
-  correct: boolean;
+  isCorrect: boolean;
 };
 
 export default async function Answer({ params }: { params: { id: string } }) {

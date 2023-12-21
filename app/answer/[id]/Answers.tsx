@@ -12,7 +12,6 @@ type Props = {
 
 export function Answers({ answers, quizId }: Props) {
   const [isShowAnswer, setIsShowAnswer] = useState(false);
-  const router = useRouter();
 
   return (
     <div>
@@ -29,7 +28,8 @@ export function Answers({ answers, quizId }: Props) {
           <div
             key={answer.teamId}
             className={css({
-              bgColor: isShowAnswer && answer.correct ? "red.700" : "blue.700",
+              bgColor:
+                isShowAnswer && answer.isCorrect ? "red.700" : "blue.700",
               w: "19%",
               h: "120px",
               color: "white",
