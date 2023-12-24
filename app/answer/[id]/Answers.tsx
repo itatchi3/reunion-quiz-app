@@ -4,17 +4,37 @@ import { css } from "../../../styled-system/css";
 import { Answer } from "./page";
 import { useRouter } from "next/navigation";
 import { LinkButton } from "../../../components/LinkButton";
+import { Quiz } from "../../quiz/[id]/page";
+import { AnswerModal } from "./AnswerModal";
 
 type Props = {
+  quiz: Quiz;
   answers: Answer[];
   quizId: string;
 };
 
-export function Answers({ answers, quizId }: Props) {
+export function Answers({ quiz, answers, quizId }: Props) {
   const [isShowAnswer, setIsShowAnswer] = useState(false);
+  const [isOpenModal, setIsOpenModal] = useState(false);
+  const [modalTeamId, setModalTeamId] = useState("");
 
   return (
     <div>
+      <div
+        className={css({
+          m: "0px 5px 10px",
+          p: "10px",
+          bgColor: "white",
+          opacity: "80%",
+          display: "flex",
+          rounded: "lg",
+          fontSize: "24px",
+          fontWeight: "bold",
+          flexFlow: "wrap",
+        })}
+      >
+        Q{quizId}: {quiz.text}
+      </div>
       <div
         className={css({
           display: "flex",
@@ -25,7 +45,7 @@ export function Answers({ answers, quizId }: Props) {
         })}
       >
         {answers.map((answer) => (
-          <div
+          <button
             key={answer.teamId}
             className={css({
               bgColor:
@@ -38,6 +58,10 @@ export function Answers({ answers, quizId }: Props) {
               boxShadow: "0 4px 7px 3px rgba(0, 0, 0, .5)",
               borderRadius: "6px",
             })}
+            onClick={() => {
+              setIsOpenModal(true);
+              setModalTeamId(answer.teamId);
+            }}
           >
             <div
               className={css({
@@ -62,19 +86,35 @@ export function Answers({ answers, quizId }: Props) {
             >
               {answer.teamId} 班
             </div>
-          </div>
+          </button>
         ))}
       </div>
-      <div className={css({ display: "flex", justifyContent: "end" })}>
+      <div
+        className={css({ display: "flex", justifyContent: "end", gap: "10px" })}
+      >
         <LinkButton text="問題に戻る" path={`/quiz/${quizId}`} />
         <button
-          className={css({ bgColor: "white", borderRadius: "full" })}
+          className={css({
+            bgColor: "white",
+            borderRadius: "8px",
+            fontWeight: "bold",
+            padding: "5px 10px",
+          })}
           onClick={() => setIsShowAnswer(true)}
         >
           答え合わせ
         </button>
         <LinkButton text="次の問題" path={`/quiz/${Number(quizId) + 1}`} />
       </div>
+      {isOpenModal && (
+        <AnswerModal
+          teamId={modalTeamId}
+          answerText={answers[Number(modalTeamId) - 1].answerText}
+          isShowAnswer={isShowAnswer}
+          isCorrect={answers[Number(modalTeamId) - 1].isCorrect}
+          closeModal={() => setIsOpenModal(false)}
+        />
+      )}
     </div>
   );
 }

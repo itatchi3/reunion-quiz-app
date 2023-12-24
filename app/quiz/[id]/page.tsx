@@ -2,7 +2,7 @@ import { LinkButton } from "../../../components/LinkButton";
 import { css } from "../../../styled-system/css";
 import { fetchClient } from "../../../util/fetchClient";
 
-type Quiz = {
+export type Quiz = {
   id: number;
   type: "CHOICE" | "IMAGE" | "FREE";
   text: string;
@@ -15,7 +15,17 @@ export default async function Quiz({ params }: { params: { id: number } }) {
       cache: "no-store",
     })) as Quiz;
 
-    console.log(quiz);
+    if (quiz.type === "IMAGE") {
+      console.log("image");
+      try {
+        const quiz2 = await fetchClient(`/api/quiz/${params.id}/image`, {
+          cache: "no-store",
+        });
+        console.log(quiz2);
+      } catch (error) {
+        console.log(error);
+      }
+    }
 
     return (
       <div>
