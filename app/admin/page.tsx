@@ -87,13 +87,14 @@ export default function Admin() {
             })}
             onClick={async () => {
               try {
-                await fetch(`https://dosokai.raruku.com/api/admin/shuffle`, {
-                  method: "POST",
-                  headers: {
-                    "X-API-KEY": key,
-                  },
-                  body: JSON.stringify({ userPerTeam: teamNum }),
-                });
+                await fetch(
+                  `https://dosokai.raruku.com/api/admin/shuffle?userPerTeam=${teamNum}`,
+                  {
+                    headers: {
+                      "X-API-KEY": key,
+                    },
+                  }
+                );
               } catch (error) {
                 alert(error);
               }
