@@ -95,6 +95,7 @@ export default function Admin() {
                     },
                   }
                 );
+                alert("チームをシャッフルしました");
               } catch (error) {
                 alert(error);
               }
@@ -116,6 +117,7 @@ export default function Admin() {
                     "X-API-KEY": key,
                   },
                 });
+                alert("チームを配信しました");
               } catch (error) {
                 alert(error);
               }
@@ -158,6 +160,7 @@ export default function Admin() {
                     },
                   }
                 );
+                alert("回答を開始しました");
               } catch (error) {
                 alert(error);
               }
@@ -183,6 +186,7 @@ export default function Admin() {
                     },
                   }
                 );
+                alert("回答を終了しました");
               } catch (error) {
                 alert(error);
               }
@@ -209,6 +213,7 @@ export default function Admin() {
                     body: JSON.stringify({ status: "BEFORE_STARTING_QUIZ" }),
                   }
                 );
+                alert("回答を再開しました");
               } catch (error) {
                 alert(error);
               }
