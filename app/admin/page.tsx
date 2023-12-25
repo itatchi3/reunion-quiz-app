@@ -267,9 +267,9 @@ export default function Admin() {
                   alert("全チーム回答しました");
                 } else {
                   alert(
-                    `まだ回答していないチームがいます(${resJson.notAnswerTeams.join(
+                    `まだチーム${resJson.notAnswerTeams.join(
                       ","
-                    )})`
+                    )}が回答していません`
                   );
                 }
               } catch (error) {

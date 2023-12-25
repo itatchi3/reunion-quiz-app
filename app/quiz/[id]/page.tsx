@@ -47,12 +47,20 @@ export default async function Quiz({ params }: { params: { id: number } }) {
             borderRadius: "48px",
             w: "100%",
             h: "100%",
-            p: "48px 48px 0px",
+            p: "48px",
             boxShadow: "0 10px 16px 0 rgba(0, 0, 0, .5)",
           })}
         >
           {quiz.type === "CHOICE" && (
-            <div key={quiz.quizId}>
+            <div
+              key={quiz.quizId}
+              className={css({
+                display: "flex",
+                flexDirection: "column",
+                h: "100%",
+                justifyContent: "space-between",
+              })}
+            >
               <div className={css({ display: "flex", gap: "20px" })}>
                 <p className={css({ fontSize: "48px", fontWeight: "bold" })}>
                   Q{quiz.quizId}
@@ -61,10 +69,12 @@ export default async function Quiz({ params }: { params: { id: number } }) {
                   {quiz.text}
                 </p>
               </div>
+
               <div
                 className={css({
                   display: "grid",
                   gridTemplateColumns: "1fr 1fr",
+                  gap: "20px",
                 })}
               >
                 {quiz.options.map((option, i) => (
@@ -72,22 +82,32 @@ export default async function Quiz({ params }: { params: { id: number } }) {
                     key={option}
                     className={css({
                       display: "flex",
+                      alignItems: "center",
                       bgColor: "white",
-                      rounded: "30px",
-                      gap: "20px",
+                      rounded: "20px",
                     })}
                   >
                     <p
                       className={css({
-                        fontSize: "48px",
+                        display: "flex",
+                        justifyContent: "center",
+                        alignItems: "center",
+                        fontSize: "30px",
                         fontWeight: "bold",
-                        bgColor: "blue.700",
+                        bgColor: "red.400",
+                        borderRadius: "full",
+                        w: "45px",
+                        h: "45px",
+                        ml: "10px",
                       })}
                     >
                       {i + 1}
                     </p>
                     <p
                       className={css({
+                        display: "flex",
+                        justifyContent: "center",
+                        w: "calc(100% - 65px)",
                         fontSize: "48px",
                         fontWeight: "bold",
                       })}
