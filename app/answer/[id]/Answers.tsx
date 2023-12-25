@@ -93,7 +93,7 @@ export function Answers({ quiz, answers, quizId }: Props) {
       <div
         className={css({ display: "flex", justifyContent: "end", gap: "10px" })}
       >
-        <LinkButton text="問題に戻る" path={`/quiz/${quizId}`} />
+        <LinkButton text="前の問題に戻る" path={`/quiz/${quizId}`} />
         <button
           className={css({
             bgColor: "white",
