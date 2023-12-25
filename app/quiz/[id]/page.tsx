@@ -148,6 +148,18 @@ export default async function Quiz({ params }: { params: { id: string } }) {
                   {quiz.text}
                 </p>
               </div>
+              <p
+                className={css({
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  h: "50vh",
+                  fontSize: "90px",
+                  fontWeight: "bold",
+                })}
+              >
+                自由記述
+              </p>
             </div>
           )}
         </div>

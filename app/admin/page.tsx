@@ -91,6 +91,7 @@ export default function Admin() {
                   `https://dosokai.raruku.com/api/admin/shuffle?userPerTeam=${teamNum}`,
                   {
                     headers: {
+                      "Content-Type": "application/json",
                       "X-API-KEY": key,
                     },
                   }
@@ -114,6 +115,7 @@ export default function Admin() {
               try {
                 await fetch(`https://dosokai.raruku.com/api/admin/pushTeam`, {
                   headers: {
+                    "Content-Type": "application/json",
                     "X-API-KEY": key,
                   },
                 });
@@ -156,6 +158,7 @@ export default function Admin() {
                   {
                     method: "PUT",
                     headers: {
+                      "Content-Type": "application/json",
                       "X-API-KEY": key,
                     },
                   }
@@ -182,6 +185,7 @@ export default function Admin() {
                   {
                     method: "PUT",
                     headers: {
+                      "Content-Type": "application/json",
                       "X-API-KEY": key,
                     },
                   }
@@ -208,6 +212,7 @@ export default function Admin() {
                   {
                     method: "PUT",
                     headers: {
+                      "Content-Type": "application/json",
                       "X-API-KEY": key,
                     },
                     body: JSON.stringify({ status: "BEFORE_STARTING_QUIZ" }),
@@ -267,6 +272,7 @@ export default function Admin() {
                   `https://dosokai.raruku.com/api/admin/quiz/currentStatus`,
                   {
                     headers: {
+                      "Content-Type": "application/json",
                       "X-API-KEY": key,
                     },
                   }
@@ -301,6 +307,7 @@ export default function Admin() {
                   `https://dosokai.raruku.com/api/admin/quiz/${statusQuizId}/status`,
                   {
                     headers: {
+                      "Content-Type": "application/json",
                       "X-API-KEY": key,
                     },
                   }
@@ -395,6 +402,7 @@ export default function Admin() {
                 {
                   method: "PUT",
                   headers: {
+                    "Content-Type": "application/json",
                     "X-API-KEY": key,
                   },
                   body: JSON.stringify({ correctTeamIds: checkedTeamValues }),

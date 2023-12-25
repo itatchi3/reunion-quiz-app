@@ -107,7 +107,12 @@ export function Answers({ quiz, answers, quizId }: Props) {
         </button>
         <LinkButton text="次の問題" path={`/quiz/${Number(quizId) + 1}`} />
       </div>
-      {isOpenModal && (
+      <div
+        className={css({
+          display: "none",
+          animation: isOpenModal ? "fadeIn 1s" : "fadeOut 1s",
+        })}
+      >
         <AnswerModal
           teamId={modalTeamId}
           answerText={answers[Number(modalTeamId) - 1].answerText}
@@ -115,7 +120,7 @@ export function Answers({ quiz, answers, quizId }: Props) {
           isCorrect={answers[Number(modalTeamId) - 1].isCorrect}
           closeModal={() => setIsOpenModal(false)}
         />
-      )}
+      </div>
     </div>
   );
 }
