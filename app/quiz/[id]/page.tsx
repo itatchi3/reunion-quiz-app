@@ -129,13 +129,21 @@ export default async function Quiz({ params }: { params: { id: string } }) {
                   {quiz.text}
                 </p>
               </div>
-              <Image
-                src={await fetchImage(params.id)}
-                width={800}
-                height={600}
-                alt="quiz"
-                color="white"
-              />
+              <div
+                className={css({
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                })}
+              >
+                <Image
+                  src={await fetchImage(params.id)}
+                  width={680}
+                  height={510}
+                  alt="quiz"
+                  color="white"
+                />
+              </div>
             </div>
           )}
           {quiz.type === "FREE" && (
