@@ -121,7 +121,7 @@ export default async function Quiz({ params }: { params: { id: number } }) {
           )}
           {quiz.type === "IMAGE" && (
             <div key={quiz.quizId}>
-              <div>
+              <div className={css({ display: "flex", gap: "20px" })}>
                 <p className={css({ fontSize: "48px", fontWeight: "bold" })}>
                   Q{quiz.quizId}
                 </p>
@@ -140,7 +140,7 @@ export default async function Quiz({ params }: { params: { id: number } }) {
           )}
           {quiz.type === "FREE" && (
             <div key={quiz.quizId}>
-              <div>
+              <div className={css({ display: "flex", gap: "20px" })}>
                 <p className={css({ fontSize: "48px", fontWeight: "bold" })}>
                   Q{quiz.quizId}
                 </p>
