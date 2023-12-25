@@ -101,7 +101,7 @@ export default function Admin() {
               }
             }}
           >
-            チーム決定
+            チームシャッフル
           </button>
           <button
             className={css({
@@ -117,13 +117,13 @@ export default function Admin() {
                     "X-API-KEY": key,
                   },
                 });
-                alert("チームを配信しました");
+                alert("決定したチームを配信しました");
               } catch (error) {
                 alert(error);
               }
             }}
           >
-            チーム配信
+            配信
           </button>
         </div>
       </div>
