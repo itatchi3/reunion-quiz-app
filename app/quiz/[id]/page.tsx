@@ -133,13 +133,13 @@ export default async function Quiz({ params }: { params: { id: string } }) {
                 className={css({
                   display: "flex",
                   justifyContent: "center",
-                  alignItems: "center",
+                  mt: "20px",
                 })}
               >
                 <Image
                   src={await fetchImage(params.id)}
-                  width={680}
-                  height={510}
+                  width={640}
+                  height={480}
                   alt="quiz"
                   color="white"
                 />
