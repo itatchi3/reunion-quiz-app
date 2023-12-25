@@ -10,7 +10,7 @@ export type Quiz = {
   options: string[];
 };
 
-const fetchImage = async (id: number) => {
+const fetchImage = async (id: string) => {
   const response = await fetch(`${process.env.API_URL}/api/quiz/${id}/image`, {
     headers: {
       "X-API-KEY": process.env.X_API_KEY || "",
@@ -22,7 +22,7 @@ const fetchImage = async (id: number) => {
   return `data:image/jpeg;base64,${base64Image}`;
 };
 
-export default async function Quiz({ params }: { params: { id: number } }) {
+export default async function Quiz({ params }: { params: { id: string } }) {
   try {
     const quiz = (await fetchClient(`/api/quiz/${params.id}`, {
       cache: "no-store",
@@ -37,17 +37,17 @@ export default async function Quiz({ params }: { params: { id: number } }) {
           flexDirection: "column",
           h: "100vh",
           justifyContent: "space-between",
-          p: "10px",
+          p: "15px 15px 10px",
           gap: "10px",
         })}
       >
         <div
           className={css({
             bgColor: "rgba(255, 255, 255, 0.8)",
-            borderRadius: "48px",
+            borderRadius: "30px",
             w: "100%",
             h: "100%",
-            p: "48px",
+            p: "30px",
             boxShadow: "0 10px 16px 0 rgba(0, 0, 0, .5)",
           })}
         >
@@ -72,8 +72,8 @@ export default async function Quiz({ params }: { params: { id: number } }) {
 
               <div
                 className={css({
-                  display: "grid",
-                  gridTemplateColumns: "1fr 1fr",
+                  display: "flex",
+                  flexDirection: "column",
                   gap: "20px",
                 })}
               >
@@ -151,7 +151,19 @@ export default async function Quiz({ params }: { params: { id: number } }) {
             </div>
           )}
         </div>
-        <div className={css({ display: "flex", justifyContent: "end" })}>
+        <div
+          className={css({
+            display: "flex",
+            justifyContent: "end",
+            gap: "10px",
+          })}
+        >
+          {params.id !== "1" && (
+            <LinkButton
+              text="前の問題"
+              path={`/answer/${Number(params.id) - 1}`}
+            />
+          )}
           <LinkButton text="回答一覧" path={`/answer/${params.id}`} />
         </div>
       </div>

@@ -31,6 +31,7 @@ export function Answers({ quiz, answers, quizId }: Props) {
           fontSize: "24px",
           fontWeight: "bold",
           flexFlow: "wrap",
+          w: "calc(100vw - 20px)",
         })}
       >
         Q{quizId}: {quiz.text}
