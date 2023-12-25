@@ -339,6 +339,7 @@ export default function Admin() {
           className={css({
             display: "flex",
             gap: "10px",
+            mb: "10px",
           })}
         >
           {[...Array(25)].map((_, i) => (
