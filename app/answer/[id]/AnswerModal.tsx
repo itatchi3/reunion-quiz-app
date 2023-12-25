@@ -47,7 +47,6 @@ export function AnswerModal({
           bgColor: isShowAnswer && isCorrect ? "red.700" : "blue.700",
           w: "800px",
           h: "600px",
-
           borderRadius: "32px",
         })}
       >
@@ -55,12 +54,14 @@ export function AnswerModal({
           className={css({
             display: "flex",
             justifyContent: "center",
-            alignItems: "center",
+            alignItems: answerText.length <= 21 ? "center" : "flex-start",
             h: "520px",
             w: "800px",
             color: "white",
             fontWeight: "bold",
             fontSize: "100px",
+            p: "20px",
+            overflow: "scroll",
           })}
         >
           {answerText}

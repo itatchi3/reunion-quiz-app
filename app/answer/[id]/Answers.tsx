@@ -75,8 +75,11 @@ export function Answers({ quiz, answers, quizId }: Props) {
               className={css({
                 display: "flex",
                 justifyContent: "center",
-                alignItems: "center",
+                alignItems:
+                  answer.answerText.length <= 14 ? "center" : "flex-start",
                 h: "90px",
+                p: "10px",
+                overflow: "hidden",
               })}
             >
               {answer.answerText}
