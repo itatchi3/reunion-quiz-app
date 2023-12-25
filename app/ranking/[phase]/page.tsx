@@ -24,6 +24,7 @@ export default async function Ranking({
           {[...Array(3)].map((_, i) => (
             <li key={ranking[i].teamId}>
               {ranking[i].rank}位: {ranking[i].teamId}班 {ranking[i].score}点
+              time: {ranking[i].time}
             </li>
           ))}
         </ul>
