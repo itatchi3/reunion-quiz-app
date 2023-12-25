@@ -19,7 +19,14 @@ export function Answers({ quiz, answers, quizId }: Props) {
   const [modalTeamId, setModalTeamId] = useState("");
 
   return (
-    <div>
+    <div
+      className={css({
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "space-between",
+        h: "calc(100vh - 20px)",
+      })}
+    >
       <div
         className={css({
           m: "0px 5px 10px",
@@ -52,7 +59,7 @@ export function Answers({ quiz, answers, quizId }: Props) {
               bgColor:
                 isShowAnswer && answer.isCorrect ? "red.700" : "blue.700",
               w: "19%",
-              h: "120px",
+              h: "110px",
               color: "white",
               fontWeight: "bold",
               fontSize: "24px",
@@ -69,7 +76,7 @@ export function Answers({ quiz, answers, quizId }: Props) {
                 display: "flex",
                 justifyContent: "center",
                 alignItems: "center",
-                h: "100px",
+                h: "90px",
               })}
             >
               {answer.answerText}
@@ -93,7 +100,7 @@ export function Answers({ quiz, answers, quizId }: Props) {
       <div
         className={css({ display: "flex", justifyContent: "end", gap: "10px" })}
       >
-        <LinkButton text="前の問題に戻る" path={`/quiz/${quizId}`} />
+        <LinkButton text="問題に戻る" path={`/quiz/${quizId}`} />
         <button
           className={css({
             bgColor: "white",
