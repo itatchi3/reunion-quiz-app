@@ -152,6 +152,7 @@ export default function Admin() {
                 await fetch(
                   `https://dosokai.raruku.com/api/admin/startAnswering`,
                   {
+                    method: "PUT",
                     headers: {
                       "X-API-KEY": key,
                     },
@@ -176,6 +177,7 @@ export default function Admin() {
                 await fetch(
                   `https://dosokai.raruku.com/api/admin/stopAnswering`,
                   {
+                    method: "PUT",
                     headers: {
                       "X-API-KEY": key,
                     },
@@ -200,6 +202,7 @@ export default function Admin() {
                 await fetch(
                   `https://dosokai.raruku.com/api/admin/changeStatus`,
                   {
+                    method: "PUT",
                     headers: {
                       "X-API-KEY": key,
                     },
@@ -215,7 +218,6 @@ export default function Admin() {
           </button>
         </div>
       </div>
-
       <div>
         <p
           className={css({
@@ -386,7 +388,7 @@ export default function Admin() {
               await fetch(
                 `https://dosokai.raruku.com/api/admin/quiz/${answerQuizId}/correct`,
                 {
-                  method: "POST",
+                  method: "PUT",
                   headers: {
                     "X-API-KEY": key,
                   },
