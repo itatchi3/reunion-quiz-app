@@ -28,8 +28,6 @@ export default async function Quiz({ params }: { params: { id: string } }) {
       cache: "no-store",
     })) as Quiz;
 
-    console.log(quiz);
-
     return (
       <div
         className={css({
@@ -94,11 +92,12 @@ export default async function Quiz({ params }: { params: { id: string } }) {
                         alignItems: "center",
                         fontSize: "30px",
                         fontWeight: "bold",
-                        bgColor: "red.400",
+                        bgColor: "red.500",
                         borderRadius: "full",
                         w: "45px",
                         h: "45px",
                         ml: "10px",
+                        color: "white",
                       })}
                     >
                       {i + 1}
