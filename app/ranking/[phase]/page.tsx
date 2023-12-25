@@ -1,3 +1,4 @@
+import { css } from "../../../styled-system/css";
 import { fetchClient } from "../../../util/fetchClient";
 
 type Ranking = {
@@ -18,16 +19,39 @@ export default async function Ranking({
     })) as Ranking[];
 
     return (
-      <div>
-        <h1>ranking</h1>
-        <ul>
-          {[...Array(3)].map((_, i) => (
-            <li key={ranking[i].teamId}>
-              {ranking[i].rank}位: {ranking[i].teamId}班 {ranking[i].score}点
-              time: {ranking[i].time}
-            </li>
-          ))}
-        </ul>
+      <div className={css({ p: "40px" })}>
+        <h1 className={css({ fontWeight: "bold", fontSize: "52px" })}>
+          Ranking
+        </h1>
+        <div
+          className={css({
+            display: "flex",
+            gap: "40px",
+          })}
+        >
+          <ul>
+            {[...Array(3)].map((_, i) => (
+              <li
+                key={ranking[i].teamId}
+                className={css({ fontWeight: "bold", fontSize: "40px" })}
+              >
+                {ranking[i].rank}位: {ranking[i].teamId}班 {ranking[i].score}点
+                time: {ranking[i].time}
+              </li>
+            ))}
+          </ul>
+          <ul>
+            {[...Array(7)].map((_, i) => (
+              <li
+                key={ranking[i + 3].teamId}
+                className={css({ fontWeight: "bold", fontSize: "30px" })}
+              >
+                {ranking[i + 3].rank}位: {ranking[i + 3].teamId}班{" "}
+                {ranking[i + 3].score}点 time: {ranking[i + 3].time}
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
     );
   } catch (error) {
