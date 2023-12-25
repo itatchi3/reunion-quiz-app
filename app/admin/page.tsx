@@ -85,9 +85,9 @@ export default function Admin() {
               fontWeight: "bold",
               padding: "5px 10px",
             })}
-            onClick={() => {
+            onClick={async () => {
               try {
-                fetch(`https://dosokai.raruku.com/api/admin/shuffle`, {
+                await fetch(`https://dosokai.raruku.com/api/admin/shuffle`, {
                   headers: {
                     "X-API-KEY": key,
                   },
@@ -107,9 +107,9 @@ export default function Admin() {
               fontWeight: "bold",
               padding: "5px 10px",
             })}
-            onClick={() => {
+            onClick={async () => {
               try {
-                fetch(`https://dosokai.raruku.com/api/admin/pushTeam`, {
+                await fetch(`https://dosokai.raruku.com/api/admin/pushTeam`, {
                   headers: {
                     "X-API-KEY": key,
                   },
@@ -145,13 +145,16 @@ export default function Admin() {
               fontWeight: "bold",
               padding: "5px 10px",
             })}
-            onClick={() => {
+            onClick={async () => {
               try {
-                fetch(`https://dosokai.raruku.com/api/admin/startAnswering`, {
-                  headers: {
-                    "X-API-KEY": key,
-                  },
-                });
+                await fetch(
+                  `https://dosokai.raruku.com/api/admin/startAnswering`,
+                  {
+                    headers: {
+                      "X-API-KEY": key,
+                    },
+                  }
+                );
               } catch (error) {
                 alert(error);
               }
@@ -166,13 +169,16 @@ export default function Admin() {
               fontWeight: "bold",
               padding: "5px 10px",
             })}
-            onClick={() => {
+            onClick={async () => {
               try {
-                fetch(`https://dosokai.raruku.com/api/admin/stopAnswering`, {
-                  headers: {
-                    "X-API-KEY": key,
-                  },
-                });
+                await fetch(
+                  `https://dosokai.raruku.com/api/admin/stopAnswering`,
+                  {
+                    headers: {
+                      "X-API-KEY": key,
+                    },
+                  }
+                );
               } catch (error) {
                 alert(error);
               }
@@ -187,14 +193,17 @@ export default function Admin() {
               fontWeight: "bold",
               padding: "5px 10px",
             })}
-            onClick={() => {
+            onClick={async () => {
               try {
-                fetch(`https://dosokai.raruku.com/api/admin/changeStatus`, {
-                  headers: {
-                    "X-API-KEY": key,
-                  },
-                  body: JSON.stringify({ status: "BEFORE_STARTING_QUIZ" }),
-                });
+                await fetch(
+                  `https://dosokai.raruku.com/api/admin/changeStatus`,
+                  {
+                    headers: {
+                      "X-API-KEY": key,
+                    },
+                    body: JSON.stringify({ status: "BEFORE_STARTING_QUIZ" }),
+                  }
+                );
               } catch (error) {
                 alert(error);
               }
@@ -243,27 +252,26 @@ export default function Admin() {
               fontWeight: "bold",
               padding: "5px 10px",
             })}
-            onClick={() => {
+            onClick={async () => {
               try {
-                fetch(
+                const res = await fetch(
                   `https://dosokai.raruku.com/api/admin/quiz/${statusQuizId}/status`,
                   {
                     headers: {
                       "X-API-KEY": key,
                     },
                   }
-                ).then(async (res) => {
-                  const resJson = await res.json();
-                  if (resJson.ok) {
-                    alert("全チーム回答しました");
-                  } else {
-                    alert(
-                      `まだ回答していないチームがいます(${resJson.notAnswerTeams.join(
-                        ","
-                      )})`
-                    );
-                  }
-                });
+                );
+                const resJson = await res.json();
+                if (resJson.ok) {
+                  alert("全チーム回答しました");
+                } else {
+                  alert(
+                    `まだ回答していないチームがいます(${resJson.notAnswerTeams.join(
+                      ","
+                    )})`
+                  );
+                }
               } catch (error) {
                 alert(error);
               }
@@ -278,27 +286,26 @@ export default function Admin() {
               fontWeight: "bold",
               padding: "5px 10px",
             })}
-            onClick={() => {
+            onClick={async () => {
               try {
-                fetch(
+                const res = await fetch(
                   `https://dosokai.raruku.com/api/admin/quiz/currentStatus`,
                   {
                     headers: {
                       "X-API-KEY": key,
                     },
                   }
-                ).then(async (res) => {
-                  const resJson = await res.json();
-                  if (resJson.ok) {
-                    alert("全チーム回答しました");
-                  } else {
-                    alert(
-                      `まだ回答していないチームがいます(${resJson.notAnswerTeams.join(
-                        ","
-                      )})`
-                    );
-                  }
-                });
+                );
+                const resJson = await res.json();
+                if (resJson.ok) {
+                  alert("全チーム回答しました");
+                } else {
+                  alert(
+                    `まだ回答していないチームがいます(${resJson.notAnswerTeams.join(
+                      ","
+                    )})`
+                  );
+                }
               } catch (error) {
                 alert(error);
               }
@@ -372,9 +379,9 @@ export default function Admin() {
             fontWeight: "bold",
             padding: "5px 10px",
           })}
-          onClick={() => {
+          onClick={async () => {
             try {
-              fetch(
+              await fetch(
                 `https://dosokai.raruku.com/api/admin/quiz/${answerQuizId}/correct`,
                 {
                   method: "POST",
@@ -383,7 +390,8 @@ export default function Admin() {
                   },
                   body: JSON.stringify({ correctTeamIds: checkedTeamValues }),
                 }
-              ).then(() => alert("採点を送信しました"));
+              );
+              alert("採点を送信しました");
             } catch (error) {
               alert(error);
             }
