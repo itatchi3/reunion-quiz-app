@@ -1,12 +1,25 @@
+import Image from "next/image";
 import { LinkButton } from "../../../components/LinkButton";
 import { css } from "../../../styled-system/css";
 import { fetchClient } from "../../../util/fetchClient";
 
 export type Quiz = {
-  id: number;
+  quizId: string;
   type: "CHOICE" | "IMAGE" | "FREE";
   text: string;
   options: string[];
+};
+
+const fetchImage = async (id: number) => {
+  const response = await fetch(`${process.env.API_URL}/api/quiz/${id}/image`, {
+    headers: {
+      "X-API-KEY": process.env.X_API_KEY || "",
+    },
+    cache: "no-store",
+  });
+  const imageBuffer = await response.arrayBuffer();
+  const base64Image = Buffer.from(imageBuffer).toString("base64");
+  return `data:image/jpeg;base64,${base64Image}`;
 };
 
 export default async function Quiz({ params }: { params: { id: number } }) {
@@ -15,98 +28,108 @@ export default async function Quiz({ params }: { params: { id: number } }) {
       cache: "no-store",
     })) as Quiz;
 
-    if (quiz.type === "IMAGE") {
-      console.log("image");
-      try {
-        const quiz2 = await fetchClient(`/api/quiz/${params.id}/image`, {
-          cache: "no-store",
-        });
-        console.log(quiz2);
-      } catch (error) {
-        console.log(error);
-      }
-    }
+    console.log(quiz);
 
     return (
-      <div>
+      <div
+        className={css({
+          display: "flex",
+          flexDirection: "column",
+          h: "100vh",
+          justifyContent: "space-between",
+          p: "10px",
+          gap: "10px",
+        })}
+      >
         <div
           className={css({
-            h: "95vh",
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
+            bgColor: "rgba(255, 255, 255, 0.8)",
+            borderRadius: "48px",
+            w: "100%",
+            h: "100%",
+            p: "48px 48px 0px",
+            boxShadow: "0 10px 16px 0 rgba(0, 0, 0, .5)",
           })}
         >
-          <div
-            className={css({
-              display: "flex",
-              flexDirection: "column",
-              justifyContent: "space-between",
-              bgColor: "#FFFFFF",
-              w: "90%",
-              h: "90%",
-              opacity: "80%",
-              borderRadius: "48px",
-              p: "48px",
-              boxShadow: "0 10px 16px 0 rgba(0, 0, 0, .5)",
-            })}
-          >
-            {quiz.type === "CHOICE" && (
-              <div key={quiz.id}>
-                <div>
-                  <p className={css({ fontSize: "48px", fontWeight: "bold" })}>
-                    Q{quiz.id}
-                  </p>
-                  <p className={css({ fontSize: "48px", fontWeight: "bold" })}>
-                    {quiz.text}
-                  </p>
-                </div>
-                <div
-                  className={css({
-                    display: "grid",
-                    gridTemplateColumns: "1fr 1fr",
-                  })}
-                >
-                  {quiz.options.map((option, i) => (
-                    <div key={option} className={css({})}>
-                      <p
-                        className={css({
-                          fontSize: "48px",
-                          fontWeight: "bold",
-                        })}
-                      >
-                        {i + 1} {option}
-                      </p>
-                    </div>
-                  ))}
-                </div>
+          {quiz.type === "CHOICE" && (
+            <div key={quiz.quizId}>
+              <div className={css({ display: "flex", gap: "20px" })}>
+                <p className={css({ fontSize: "48px", fontWeight: "bold" })}>
+                  Q{quiz.quizId}
+                </p>
+                <p className={css({ fontSize: "48px", fontWeight: "bold" })}>
+                  {quiz.text}
+                </p>
               </div>
-            )}
-            {quiz.type === "IMAGE" && (
-              <div key={quiz.id}>
-                <div>
-                  <p className={css({ fontSize: "48px", fontWeight: "bold" })}>
-                    Q{quiz.id}
-                  </p>
-                  <p className={css({ fontSize: "48px", fontWeight: "bold" })}>
-                    {quiz.text}
-                  </p>
-                </div>
+              <div
+                className={css({
+                  display: "grid",
+                  gridTemplateColumns: "1fr 1fr",
+                })}
+              >
+                {quiz.options.map((option, i) => (
+                  <div
+                    key={option}
+                    className={css({
+                      display: "flex",
+                      bgColor: "white",
+                      rounded: "30px",
+                      gap: "20px",
+                    })}
+                  >
+                    <p
+                      className={css({
+                        fontSize: "48px",
+                        fontWeight: "bold",
+                        bgColor: "blue.700",
+                      })}
+                    >
+                      {i + 1}
+                    </p>
+                    <p
+                      className={css({
+                        fontSize: "48px",
+                        fontWeight: "bold",
+                      })}
+                    >
+                      {option}
+                    </p>
+                  </div>
+                ))}
               </div>
-            )}
-            {quiz.type === "FREE" && (
-              <div key={quiz.id}>
-                <div>
-                  <p className={css({ fontSize: "48px", fontWeight: "bold" })}>
-                    Q{quiz.id}
-                  </p>
-                  <p className={css({ fontSize: "48px", fontWeight: "bold" })}>
-                    {quiz.text}
-                  </p>
-                </div>
+            </div>
+          )}
+          {quiz.type === "IMAGE" && (
+            <div key={quiz.quizId}>
+              <div>
+                <p className={css({ fontSize: "48px", fontWeight: "bold" })}>
+                  Q{quiz.quizId}
+                </p>
+                <p className={css({ fontSize: "48px", fontWeight: "bold" })}>
+                  {quiz.text}
+                </p>
               </div>
-            )}
-          </div>
+              <Image
+                src={await fetchImage(params.id)}
+                width={800}
+                height={600}
+                alt="quiz"
+                color="white"
+              />
+            </div>
+          )}
+          {quiz.type === "FREE" && (
+            <div key={quiz.quizId}>
+              <div>
+                <p className={css({ fontSize: "48px", fontWeight: "bold" })}>
+                  Q{quiz.quizId}
+                </p>
+                <p className={css({ fontSize: "48px", fontWeight: "bold" })}>
+                  {quiz.text}
+                </p>
+              </div>
+            </div>
+          )}
         </div>
         <div className={css({ display: "flex", justifyContent: "end" })}>
           <LinkButton text="回答一覧" path={`/answer/${params.id}`} />
