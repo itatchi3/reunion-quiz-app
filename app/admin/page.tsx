@@ -154,6 +154,40 @@ export default function Admin() {
             onClick={async () => {
               try {
                 const res = await fetch(
+                  `https://dosokai.raruku.com/api/admin/changeStatus`,
+                  {
+                    method: "PUT",
+                    headers: {
+                      "Content-Type": "application/json",
+                      "X-API-KEY": key,
+                    },
+                    body: JSON.stringify({
+                      currentQuestionId: 1,
+                      status: "BEFORE_STARTING_QUIZ",
+                    }),
+                  }
+                );
+                const resJson = await res.json();
+                alert(
+                  `Q${resJson.currentQuestionId}: ${resJson.currentStatus}`
+                );
+              } catch (error) {
+                alert(error);
+              }
+            }}
+          >
+            クイズスタート
+          </button>
+          <button
+            className={css({
+              bgColor: "white",
+              borderRadius: "8px",
+              fontWeight: "bold",
+              padding: "5px 10px",
+            })}
+            onClick={async () => {
+              try {
+                const res = await fetch(
                   `https://dosokai.raruku.com/api/admin/startAnswering`,
                   {
                     method: "PUT",
