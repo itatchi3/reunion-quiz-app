@@ -50,8 +50,6 @@ export function Answers({ quiz, answers, quizId }: Props) {
               justifyContent: "center",
               flexFlow: "wrap",
               gap: "5px",
-              w: "100%",
-              m: "0px 5px",
             })}
           >
             {quiz.options.map((option, i) => (

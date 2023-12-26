@@ -42,7 +42,7 @@ export default async function Ranking({
           </ul>
           {ranking.length > 3 && (
             <ul>
-              {[...Array(ranking.length - 3)].map((_, i) => (
+              {[...Array(7)].map((_, i) => (
                 <li
                   key={ranking[i + 3].teamId}
                   className={css({ fontWeight: "bold", fontSize: "30px" })}
