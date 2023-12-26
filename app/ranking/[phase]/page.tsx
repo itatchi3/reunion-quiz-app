@@ -40,21 +40,24 @@ export default async function Ranking({
               </li>
             ))}
           </ul>
-          <ul>
-            {[...Array(7)].map((_, i) => (
-              <li
-                key={ranking[i + 3].teamId}
-                className={css({ fontWeight: "bold", fontSize: "30px" })}
-              >
-                {ranking[i + 3].rank}位: {ranking[i + 3].teamId}班{" "}
-                {ranking[i + 3].score}点 time: {ranking[i + 3].time}
-              </li>
-            ))}
-          </ul>
+          {ranking.length > 3 && (
+            <ul>
+              {[...Array(ranking.length - 3)].map((_, i) => (
+                <li
+                  key={ranking[i + 3].teamId}
+                  className={css({ fontWeight: "bold", fontSize: "30px" })}
+                >
+                  {ranking[i + 3].rank}位: {ranking[i + 3].teamId}班{" "}
+                  {ranking[i + 3].score}点 time: {ranking[i + 3].time}
+                </li>
+              ))}
+            </ul>
+          )}
         </div>
       </div>
     );
   } catch (error) {
+    console.log(error);
     return <div>データがありません</div>;
   }
 }
