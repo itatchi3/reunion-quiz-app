@@ -153,7 +153,7 @@ export default function Admin() {
             })}
             onClick={async () => {
               try {
-                await fetch(
+                const res = await fetch(
                   `https://dosokai.raruku.com/api/admin/startAnswering`,
                   {
                     method: "PUT",
@@ -163,7 +163,10 @@ export default function Admin() {
                     },
                   }
                 );
-                alert("回答を開始しました");
+                const resJson = await res.json();
+                alert(
+                  `Q${resJson.currentQuestionId}: ${resJson.currentStatus}`
+                );
               } catch (error) {
                 alert(error);
               }
@@ -180,7 +183,7 @@ export default function Admin() {
             })}
             onClick={async () => {
               try {
-                await fetch(
+                const res = await fetch(
                   `https://dosokai.raruku.com/api/admin/stopAnswering`,
                   {
                     method: "PUT",
@@ -190,7 +193,10 @@ export default function Admin() {
                     },
                   }
                 );
-                alert("回答を終了しました");
+                const resJson = await res.json();
+                alert(
+                  `Q${resJson.currentQuestionId}: ${resJson.currentStatus}`
+                );
               } catch (error) {
                 alert(error);
               }
