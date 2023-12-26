@@ -29,7 +29,7 @@ export default async function Answer({ params }: { params: { id: string } }) {
           p: "10px",
         })}
       >
-        <Answers quiz={quiz} answers={answers} quizId={params.id} />
+        <Answers quiz={quiz} answers={answers} />
       </div>
     );
   } catch (error) {

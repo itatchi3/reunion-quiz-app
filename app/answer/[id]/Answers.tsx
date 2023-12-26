@@ -9,10 +9,9 @@ import { AnswerModal } from "./AnswerModal";
 type Props = {
   quiz: Quiz;
   answers: Answer[];
-  quizId: string;
 };
 
-export function Answers({ quiz, answers, quizId }: Props) {
+export function Answers({ quiz, answers }: Props) {
   const [isShowAnswer, setIsShowAnswer] = useState(false);
   const [isOpenModal, setIsOpenModal] = useState(false);
   const [modalTeamId, setModalTeamId] = useState("");
@@ -41,7 +40,7 @@ export function Answers({ quiz, answers, quizId }: Props) {
             w: "calc(100vw - 20px)",
           })}
         >
-          Q{quizId}: {quiz.text}
+          Q{quiz.quizId}: {quiz.text}
         </div>
         {quiz.options.length > 1 && (
           <div
@@ -115,7 +114,7 @@ export function Answers({ quiz, answers, quizId }: Props) {
               bgColor:
                 isShowAnswer && answer.isCorrect ? "red.700" : "blue.700",
               w: "19%",
-              h: quiz.quizId === "3" ? "90px" : "105px",
+              h: quiz.quizId === 3 ? "95px" : "105px",
               color: "white",
               fontWeight: "bold",
               fontSize: "24px",
@@ -133,7 +132,7 @@ export function Answers({ quiz, answers, quizId }: Props) {
                 justifyContent: "center",
                 alignItems:
                   answer.answerText.length <= 14 ? "center" : "flex-start",
-                h: quiz.quizId === "3" ? "70px" : "85px",
+                h: quiz.quizId === 3 ? "75px" : "85px",
                 p: "10px",
                 overflow: "hidden",
               })}
@@ -159,7 +158,7 @@ export function Answers({ quiz, answers, quizId }: Props) {
       <div
         className={css({ display: "flex", justifyContent: "end", gap: "10px" })}
       >
-        <LinkButton text="問題に戻る" path={`/quiz/${quizId}`} />
+        <LinkButton text="問題に戻る" path={`/quiz/${quiz.quizId}`} />
         <button
           className={css({
             bgColor: "white",
@@ -171,7 +170,7 @@ export function Answers({ quiz, answers, quizId }: Props) {
         >
           答え合わせ
         </button>
-        <LinkButton text="次の問題" path={`/quiz/${Number(quizId) + 1}`} />
+        <LinkButton text="次の問題" path={`/quiz/${Number(quiz.quizId) + 1}`} />
       </div>
       {isOpenModal && (
         <AnswerModal

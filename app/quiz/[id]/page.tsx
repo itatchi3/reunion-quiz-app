@@ -4,7 +4,7 @@ import { css } from "../../../styled-system/css";
 import { fetchClient } from "../../../util/fetchClient";
 
 export type Quiz = {
-  quizId: string;
+  quizId: number;
   type: "CHOICE" | "IMAGE" | "FREE";
   text: string;
   options: string[];
