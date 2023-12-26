@@ -423,6 +423,74 @@ export default function Admin() {
           採点を送信
         </button>
       </div>
+      <div>
+        <p
+          className={css({
+            fontSize: "24px",
+            fontWeight: "bold",
+          })}
+        >
+          ドボンクイズ
+        </p>
+        <div
+          className={css({
+            display: "flex",
+            gap: "10px",
+          })}
+        >
+          <button
+            className={css({
+              bgColor: "white",
+              borderRadius: "8px",
+              fontWeight: "bold",
+              padding: "5px 10px",
+            })}
+            onClick={async () => {
+              try {
+                await fetch(
+                  `https://dosokai.raruku.com/api/admin/dobon/start`,
+                  {
+                    method: "PUT",
+                    headers: {
+                      "Content-Type": "application/json",
+                      "X-API-KEY": key,
+                    },
+                  }
+                );
+                alert("ドボン開始");
+              } catch (error) {
+                alert(error);
+              }
+            }}
+          >
+            今の問題
+          </button>
+          <button
+            className={css({
+              bgColor: "white",
+              borderRadius: "8px",
+              fontWeight: "bold",
+              padding: "5px 10px",
+            })}
+            onClick={async () => {
+              try {
+                await fetch(`https://dosokai.raruku.com/api/admin/dobon/stop`, {
+                  method: "PUT",
+                  headers: {
+                    "Content-Type": "application/json",
+                    "X-API-KEY": key,
+                  },
+                });
+                alert("ドボン終了");
+              } catch (error) {
+                alert(error);
+              }
+            }}
+          >
+            今の問題
+          </button>
+        </div>
+      </div>
     </div>
   );
 }
