@@ -117,7 +117,7 @@ export function Answers({ quiz, answers, quizId }: Props) {
               bgColor:
                 isShowAnswer && answer.isCorrect ? "red.700" : "blue.700",
               w: "19%",
-              h: "110px",
+              h: quiz.quizId === "3" ? "90px" : "105px",
               color: "white",
               fontWeight: "bold",
               fontSize: "24px",
@@ -135,7 +135,7 @@ export function Answers({ quiz, answers, quizId }: Props) {
                 justifyContent: "center",
                 alignItems:
                   answer.answerText.length <= 14 ? "center" : "flex-start",
-                h: "90px",
+                h: quiz.quizId === "3" ? "70px" : "85px",
                 p: "10px",
                 overflow: "hidden",
               })}
