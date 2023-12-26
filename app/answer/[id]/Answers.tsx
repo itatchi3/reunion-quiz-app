@@ -2,7 +2,6 @@
 import { useState } from "react";
 import { css } from "../../../styled-system/css";
 import { Answer } from "./page";
-import { useRouter } from "next/navigation";
 import { LinkButton } from "../../../components/LinkButton";
 import { Quiz } from "../../quiz/[id]/page";
 import { AnswerModal } from "./AnswerModal";
@@ -27,21 +26,80 @@ export function Answers({ quiz, answers, quizId }: Props) {
         h: "calc(100vh - 20px)",
       })}
     >
-      <div
-        className={css({
-          m: "0px 5px 10px",
-          p: "10px",
-          bgColor: "white",
-          opacity: "80%",
-          display: "flex",
-          rounded: "lg",
-          fontSize: "24px",
-          fontWeight: "bold",
-          flexFlow: "wrap",
-          w: "calc(100vw - 20px)",
-        })}
-      >
-        Q{quizId}: {quiz.text}
+      <div>
+        <div
+          className={css({
+            m: "0px 5px 5px",
+            p: "5px",
+            bgColor: "rgba(255, 255, 255, 0.8)",
+            display: "flex",
+            rounded: "lg",
+            fontSize: "24px",
+            fontWeight: "bold",
+            justifyContent: "center",
+            alignItems: "center",
+            w: "calc(100vw - 20px)",
+          })}
+        >
+          Q{quizId}: {quiz.text}
+        </div>
+        {quiz.options.length > 1 && (
+          <div
+            className={css({
+              display: "flex",
+              justifyContent: "center",
+              flexFlow: "wrap",
+              gap: "5px",
+              w: "100%",
+              m: "0px 5px",
+            })}
+          >
+            {quiz.options.map((option, i) => (
+              <div
+                key={option}
+                className={css({
+                  w: "calc(50% - 8px)",
+                  p: "0 5px",
+                  bgColor: "white",
+                  display: "flex",
+                  rounded: "lg",
+                  fontSize: "24px",
+                  fontWeight: "bold",
+                  flexFlow: "wrap",
+                  alignItems: "center",
+                })}
+              >
+                <p
+                  className={css({
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    fontSize: "20px",
+                    fontWeight: "bold",
+                    bgColor: "red.500",
+                    borderRadius: "full",
+                    w: "24px",
+                    h: "24px",
+                    color: "white",
+                  })}
+                >
+                  {i + 1}
+                </p>
+                <div
+                  className={css({
+                    display: "flex",
+                    justifyContent: "center",
+                    w: "calc(100% - 65px)",
+                    fontSize: "24px",
+                    fontWeight: "bold",
+                  })}
+                >
+                  {option}
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
       </div>
       <div
         className={css({
