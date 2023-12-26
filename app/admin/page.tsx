@@ -463,7 +463,7 @@ export default function Admin() {
               }
             }}
           >
-            今の問題
+            ドボン開始
           </button>
           <button
             className={css({
@@ -487,7 +487,7 @@ export default function Admin() {
               }
             }}
           >
-            今の問題
+            ドボン終了
           </button>
         </div>
       </div>
