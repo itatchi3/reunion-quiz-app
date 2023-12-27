@@ -4,7 +4,7 @@ import { useState } from "react";
 import { css } from "../../styled-system/css";
 
 export default function Admin() {
-  const [key, setKey] = useState("");
+  const [key, setKey] = useState(() => localStorage.getItem("key") || "");
   const [teamNum, setTeamNum] = useState("");
   const [statusQuizId, setStatusQuizId] = useState("");
   const [answerQuizId, setAnswerQuizId] = useState("");
@@ -46,6 +46,21 @@ export default function Admin() {
           value={key}
           onChange={(e) => setKey(e.target.value)}
         />
+        <button
+          className={css({
+            bgColor: "white",
+            borderRadius: "8px",
+            fontWeight: "bold",
+            padding: "5px 10px",
+            ml: "10px",
+          })}
+          onClick={() => {
+            localStorage.setItem("key", key);
+            alert("保存しました");
+          }}
+        >
+          保存
+        </button>
       </div>
       <div>
         <p
