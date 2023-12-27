@@ -1,14 +1,20 @@
 "use client";
 
-import { useState } from "react";
+import { use, useEffect, useState } from "react";
 import { css } from "../../styled-system/css";
 
 export default function Admin() {
-  const [key, setKey] = useState(() => localStorage.getItem("key") || "");
+  const [key, setKey] = useState("");
   const [teamNum, setTeamNum] = useState("");
   const [statusQuizId, setStatusQuizId] = useState("");
   const [answerQuizId, setAnswerQuizId] = useState("");
   const [checkedTeamValues, setCheckedTeamValues] = useState<string[]>([]);
+
+  useEffect(() => {
+    const key = localStorage.getItem("key");
+    if (!key) return;
+    setKey(key);
+  }, []);
 
   const handleChangeCheckBox = (e: any) => {
     if (checkedTeamValues.includes(e.target.value)) {
