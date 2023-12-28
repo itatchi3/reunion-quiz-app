@@ -73,12 +73,23 @@ export function Ranking({ ranking }: { ranking: Ranking[] }) {
                     fontWeight: "bold",
                     display: "flex",
                     justifyContent: "center",
+                    alignItems: "flex-end",
+                    gap: "10px",
                     lineHeight: "100px",
                     opacity: isShowArray[i] ? 1 : 0,
                     transition: "opacity 0.3s",
                   })}
                 >
-                  {ranking[i].teamId}班
+                  <p>{ranking[i].teamId}</p>
+                  <p
+                    className={css({
+                      fontSize: "50px",
+                      lineHeight: "50px",
+                      mb: "10px",
+                    })}
+                  >
+                    班
+                  </p>
                 </div>
                 <div
                   className={css({
@@ -141,9 +152,20 @@ export function Ranking({ ranking }: { ranking: Ranking[] }) {
                         fontSize: "40px",
                         opacity: isShowArray[3] ? 1 : 0,
                         transition: "opacity 0.3s",
+                        display: "flex",
+                        alignItems: "flex-end",
+                        gap: "5px",
                       })}
                     >
-                      {ranking[i + 3].teamId}班
+                      <p>{ranking[i + 3].teamId}</p>
+                      <p
+                        className={css({
+                          fontSize: "20px",
+                          mb: "5px",
+                        })}
+                      >
+                        班
+                      </p>
                     </div>
                     <div
                       className={css({
