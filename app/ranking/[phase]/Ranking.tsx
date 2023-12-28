@@ -92,10 +92,8 @@ export function Ranking({ ranking }: { ranking: Ranking[] }) {
                     transition: "opacity 0.3s",
                   })}
                 >
-                  {/* <div>time: {ranking[i].time}</div>
-                  <div>score: {ranking[i].score}</div> */}
-                  <div>time: 100</div>
-                  <div>score: 100</div>
+                  <div>time: {ranking[i].time}</div>
+                  <div>score: {ranking[i].score}</div>
                 </div>
               </div>
             </div>
@@ -153,7 +151,7 @@ export function Ranking({ ranking }: { ranking: Ranking[] }) {
                         transition: "opacity 0.3s",
                       })}
                     >
-                      score: 100
+                      score: {ranking[i + 3].score}
                     </div>
                     <div
                       className={css({
@@ -161,10 +159,8 @@ export function Ranking({ ranking }: { ranking: Ranking[] }) {
                         transition: "opacity 0.3s",
                       })}
                     >
-                      time: 100
+                      time: {ranking[i + 3].score}
                     </div>
-                    {/* <div>score: {ranking[i + 3].score}</div>
-                    <div>time: {ranking[i + 3].time}</div> */}
                   </div>
                 </li>
               ))}
