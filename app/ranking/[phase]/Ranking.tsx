@@ -76,9 +76,11 @@ export function Ranking({ ranking }: { ranking: Ranking[] }) {
                     alignItems: "flex-end",
                     gap: "10px",
                     lineHeight: "100px",
+                  })}
+                  style={{
                     opacity: isShowArray[i] ? 1 : 0,
                     transition: "opacity 0.3s",
-                  })}
+                  }}
                 >
                   <p>{ranking[i].teamId}</p>
                   <p
@@ -99,9 +101,11 @@ export function Ranking({ ranking }: { ranking: Ranking[] }) {
                     gap: "10px",
                     fontSize: "32px",
                     mt: "10px",
+                  })}
+                  style={{
                     opacity: isShowArray[i] ? 1 : 0,
                     transition: "opacity 0.3s",
-                  })}
+                  }}
                 >
                   <div>time: {ranking[i].time}</div>
                   <div>score: {ranking[i].score}</div>
@@ -150,12 +154,14 @@ export function Ranking({ ranking }: { ranking: Ranking[] }) {
                     <div
                       className={css({
                         fontSize: "40px",
-                        opacity: isShowArray[3] ? 1 : 0,
-                        transition: "opacity 0.3s",
                         display: "flex",
                         alignItems: "flex-end",
                         gap: "5px",
                       })}
+                      style={{
+                        opacity: isShowArray[3] ? 1 : 0,
+                        transition: "opacity 0.3s",
+                      }}
                     >
                       <p>{ranking[i + 3].teamId}</p>
                       <p
@@ -168,18 +174,18 @@ export function Ranking({ ranking }: { ranking: Ranking[] }) {
                       </p>
                     </div>
                     <div
-                      className={css({
+                      style={{
                         opacity: isShowArray[3] ? 1 : 0,
                         transition: "opacity 0.3s",
-                      })}
+                      }}
                     >
                       score: {ranking[i + 3].score}
                     </div>
                     <div
-                      className={css({
+                      style={{
                         opacity: isShowArray[3] ? 1 : 0,
                         transition: "opacity 0.3s",
-                      })}
+                      }}
                     >
                       time: {ranking[i + 3].score}
                     </div>
